@@ -21,16 +21,18 @@ public class PlayerManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        List<GameObject> players = new List<GameObject>(Players);
+        players.Reverse();
         int sqrtCeil = (int)Math.Ceiling(Math.Sqrt(Players.Count));
-        int horizontalCells = sqrtCeil;
-        int verticalCells = (int)Math.Ceiling((float)Players.Count / sqrtCeil);
-        float width = 1.0f / horizontalCells;
+        int verticalCells = (int)Math.Ceiling((float)players.Count / sqrtCeil);
         float height = 1.0f / verticalCells;
         for (int y = 0; y < verticalCells; y++)
         {
-            for (int x = 0; x < horizontalCells && (y * sqrtCeil + x) < Players.Count; x++)
+            int horizontalCells = Math.Min(sqrtCeil, players.Count - y * sqrtCeil);
+            float width = 1.0f / horizontalCells;
+            for (int x = 0; x < horizontalCells && (y * sqrtCeil + x) < players.Count; x++)
             {
-                Players[y * sqrtCeil + x].SendMessage("SetViewportRect", new Rect(x * width, 1.0f - (y * height) - height, width, height));
+                players[y * sqrtCeil + x].SendMessage("SetViewportRect", new Rect(1.0f - (x * width) - width, y * height, width, height));
             }
         }
     }
