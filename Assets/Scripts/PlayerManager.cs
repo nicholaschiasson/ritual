@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    private const int MAX_PLAYERS = 4;
+    const int MAX_PLAYERS = 4;
 
     public List<GameObject> Players;
 
@@ -14,13 +14,16 @@ public class PlayerManager : MonoBehaviour
         if (Players.Count > MAX_PLAYERS)
         {
             Debug.LogWarning(string.Format("Cannot have more than {0} players!", MAX_PLAYERS));
-            //Players.RemoveRange(MAX_PLAYERS, Players.Count - MAX_PLAYERS);
+            Players.RemoveRange(MAX_PLAYERS, Players.Count - MAX_PLAYERS);
         }
     }
 
     // Use this for initialization
     void Start()
     {
+        // reverse the list because the logic below stretches the last player(s)
+        // viewports widths to fit, and we want to prioritize the first few
+        // players in viewport size rather than the last
         List<GameObject> players = new List<GameObject>(Players);
         players.Reverse();
         int sqrtCeil = (int)Math.Ceiling(Math.Sqrt(Players.Count));
