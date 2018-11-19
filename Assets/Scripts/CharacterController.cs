@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
@@ -16,5 +14,12 @@ public class CharacterController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    // Message Handlers
+    void SetViewportRect(Rect dimensions)
+    {
+        Debug.Log(dimensions);
+        Character.GetComponentInChildren<Camera>().rect = dimensions;
     }
 }
