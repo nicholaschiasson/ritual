@@ -2,24 +2,26 @@
 
 public class CharacterController : MonoBehaviour
 {
+    Camera camera;
+    CharacterState characterState;
+
     public GameObject Character;
 
-    // Use this for initialization
-    void Start()
+    void Awake()
     {
-
+        camera = gameObject.AddComponent<Camera>();
+        camera.transform.position = Character.transform.position - new Vector3(0, 0, 7.5f);
+        characterState = Character.GetComponent<CharacterState>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        characterState.Velocity = new Vector2(Input.GetAxis("Horizontal") * characterState.WalkSpeed, characterState.Velocity.y);
     }
 
     // Message Handlers
     void SetViewportRect(Rect dimensions)
     {
-        Debug.Log(dimensions);
-        Character.GetComponentInChildren<Camera>().rect = dimensions;
+        camera.rect = dimensions;
     }
 }

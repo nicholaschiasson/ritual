@@ -625,9 +625,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.1
   apiCompatibilityLevel: 2
-  cloudProjectId: 5edf1ff4-47a7-467b-8fca-495f96a98134
+  cloudProjectId: 568afbd4-3fd0-4838-9fce-d894005dee38
   projectName: ritual
-  organizationId: shabab-islam
+  organizationId: nicholaschiasson
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

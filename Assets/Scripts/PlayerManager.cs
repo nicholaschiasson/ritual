@@ -17,8 +17,7 @@ public class PlayerManager : MonoBehaviour
             Players.RemoveRange(MAX_PLAYERS, Players.Count - MAX_PLAYERS);
         }
     }
-
-    // Use this for initialization
+    
     void Start()
     {
         // reverse the list because the logic below stretches the last player(s)
@@ -38,11 +37,5 @@ public class PlayerManager : MonoBehaviour
                 players[y * sqrtCeil + x].SendMessage("SetViewportRect", new Rect(1.0f - (x * width) - width, y * height, width, height));
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
