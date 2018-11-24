@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class BaseStats : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+    protected int health, str, mana;
+
+    void Start () {
+        health = 100;
+        str = 5;
+        mana = 100;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public int getHealth()
+    {
+        return health;
+    }
+
+    public int takeDamage(int damage)
+    {
+        health = (health-damage>0)?health - damage:0;
+        return health;
+    }
 }
